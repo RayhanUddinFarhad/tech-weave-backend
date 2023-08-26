@@ -108,9 +108,38 @@ const deleteOnepost = async(req, res) => {
     }
  }
 
+ const approvedPost = async(req, res) => {
+    const  id = req.params.id;
+    
+        try {
+            const user = await PostScheme.findByIdAndUpdate(
+            id,
+                { $set: { status: 'approved' } },
+                { new: true } // Return the updated user
+              );
+    
+              res.status(201).send(user)
+          
+              if (!user) {
+                return res.status(404).json({ message: 'Post not found' });
+              }
+          
+            
+        } catch (error) {
+            {
+                res.status(500).send({
+                    message: error.message,
+                  });
+                
+            }
+    
+            
+        }
+     }
 module.exports = {
     savePost,
     getPost,
     getOnePost,
-    deleteOnepost
+    deleteOnepost,
+    approvedPost
 }
