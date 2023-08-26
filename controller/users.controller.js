@@ -59,7 +59,35 @@ const getUsers = async(req, res) => {
     }
 }
 
+const getOneUser = async(req, res) => { 
+
+
+
+   try {
+    const userEmail = req.params.email
+    const user = await UserSchema.findOne ({email: userEmail})
+
+    res.status(201).send(user)
+
+
+    
+   } catch (error) {
+
+    {
+        res.status(500).send({
+            message: error.message,
+          });
+        
+    }
+    
+   }
+
+
+
+}
+
 module.exports = {
     saveUsers,
-    getUsers
+    getUsers,
+    getOneUser
 }
