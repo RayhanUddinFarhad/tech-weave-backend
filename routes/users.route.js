@@ -7,7 +7,7 @@ router.post ('/users', saveUsers )
 
 router.get('/users', getUsers)
 router.get ('/users/:email', getOneUser )
-router.patch('/users/:email', changeUserRole)
+router.patch('/change-role/:email', changeUserRole)
 
 
 module.exports = router

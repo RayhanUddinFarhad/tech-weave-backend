@@ -1,4 +1,5 @@
 const PostScheme = require("../models/post.model")
+const UserSchema = require("../models/users.model")
 
 const savePost = async(req, res) => {
 
@@ -84,8 +85,32 @@ const getOnePost = async(req, res) => {
 
 }
 
+
+const deleteOnepost = async(req, res) => {
+
+    const id = req.params.id
+
+
+    try {
+
+        const user = await PostScheme.deleteOne({_id : id})
+
+        res.status(201).send(user)
+
+        
+    } catch (error) {
+        {
+            res.status(500).send({
+                message: error.message,
+              });
+            
+        }
+    }
+ }
+
 module.exports = {
     savePost,
     getPost,
-    getOnePost
+    getOnePost,
+    deleteOnepost
 }
