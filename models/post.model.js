@@ -27,7 +27,16 @@ const techWeavePost = new mongoose.Schema({
     postImage : {
         type : String
     },
-    
+
+    category : {
+        type : String
+
+    },
+    status : {
+        type : String,
+        default : "pending"
+    },
+
 
     created_at : { 
 

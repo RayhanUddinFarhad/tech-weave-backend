@@ -14,6 +14,13 @@ const techweaveUsers = new mongoose.Schema({
         type : String
     },
 
+    role : {
+        type : String,
+        
+        default : "user"
+
+    },
+
     created_at : { 
 
         type : Date,

@@ -86,8 +86,39 @@ const getOneUser = async(req, res) => {
 
 }
 
+
+const changeUserRole = async(req, res) => {
+const  userEmail = req.params.email;
+
+    try {
+        const user = await UserSchema.findOneAndUpdate(
+            {email : userEmail},
+            { $set: { role: 'admin' } },
+            { new: true } // Return the updated user
+          );
+
+          res.status(201).send(user)
+      
+          if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+          }
+      
+        
+    } catch (error) {
+        {
+            res.status(500).send({
+                message: error.message,
+              });
+            
+        }
+
+        
+    }
+ }
+
 module.exports = {
     saveUsers,
     getUsers,
-    getOneUser
+    getOneUser,
+    changeUserRole
 }

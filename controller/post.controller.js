@@ -4,7 +4,7 @@ const savePost = async(req, res) => {
 
     try {
 
-        const {name, photo, email, title, description, postImage} = req.body
+        const {name, photo, email, title, description, category, postImage} = req.body
 
 
 
@@ -17,6 +17,7 @@ const savePost = async(req, res) => {
             email,
             title,
             description,
+            category,
             postImage
         })
 
