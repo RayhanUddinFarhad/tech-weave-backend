@@ -37,6 +37,34 @@ const savePost = async(req, res) => {
     }
 
 }
+const updatePost = async(req, res) => {
+    const id = req.params.id
+
+    try {
+
+        const { title, description, category, postImage} = req.body
+
+
+
+
+
+
+        
+
+            const saved = await PostScheme.findOneAndUpdate({_id : id  }, {title, description, category, postImage})
+
+            res.status(201).send (saved)
+
+        
+
+    } catch (error) {
+        res.status(500).send({
+            message: error.message,
+          });
+        
+    }
+
+}
 
 
 const getPost = async(req, res) => { 
@@ -65,6 +93,32 @@ const getOnePost = async(req, res) => {
    try {
     const id = req.params.id
     const post = await PostScheme.findOne ({_id: id})
+
+    res.status(201).send(post)
+
+
+    
+   } catch (error) {
+
+    {
+        res.status(500).send({
+            message: error.message,
+          });
+        
+    }
+    
+   }
+
+
+
+}
+const getUserPost = async(req, res) => { 
+
+
+
+   try {
+    const email = req.params.email
+    const post = await PostScheme.find({email: email})
 
     res.status(201).send(post)
 
@@ -141,5 +195,7 @@ module.exports = {
     getPost,
     getOnePost,
     deleteOnepost,
-    approvedPost
+    approvedPost,
+    getUserPost,
+    updatePost
 }
