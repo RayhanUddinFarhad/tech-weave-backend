@@ -36,6 +36,21 @@ const techWeavePost = new mongoose.Schema({
         type : String,
         default : "pending"
     },
+    comments: [
+        {
+          text: String,
+          
+
+        },
+
+        
+      ],
+      reactions: [
+        {
+          user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+          type: Number, // Can be "like", "love", "wow", etc.
+        },
+      ],
 
 
     created_at : { 

@@ -138,6 +138,32 @@ const getUserPost = async(req, res) => {
 
 
 }
+const getPostbyCat = async(req, res) => { 
+
+
+
+   try {
+    const category = req.params.category
+    const post = await PostScheme.find({category: category })
+
+    res.status(201).send(post)
+
+
+    
+   } catch (error) {
+
+    {
+        res.status(500).send({
+            message: error.message,
+          });
+        
+    }
+    
+   }
+
+
+
+}
 
 
 const deleteOnepost = async(req, res) => {
@@ -218,6 +244,26 @@ const deleteOnepost = async(req, res) => {
             
         }
      }
+
+     const addComment = async (req, res) => {
+        try {
+          const postId = req.params.postId;
+          const { comment, userName, userPhoto, userEmail } = req.body;
+          
+          const post = await PostScheme.findById(postId);
+          if (!post) {
+            return res.status(404).json({ message: "Post not found" });
+          }
+      
+          const newComment = { comment, userName, userPhoto, userEmail }; // Assuming you have user authentication
+          post.comments.push(newComment);
+          await post.save();
+      
+          res.status(201).send(post);
+        } catch (error) {
+          res.status(500).json({ message: error.message });
+        }
+      };
 module.exports = {
     savePost,
     getPost,
@@ -226,5 +272,7 @@ module.exports = {
     approvedPost,
     getUserPost,
     updatePost,
-    rejectPost
+    rejectPost,
+    addComment,
+    getPostbyCat
 }
