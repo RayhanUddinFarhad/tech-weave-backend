@@ -264,6 +264,28 @@ const deleteOnepost = async(req, res) => {
           res.status(500).json({ message: error.message });
         }
       };
+
+      const searchPost = async (req, res) => {
+        try {
+            const searchText = req.params.text;
+    
+            if (!searchText || searchText.trim() === '') {
+                // If searchText is not provided or empty, return all posts
+                const allPosts = await PostScheme.find({ status : 'approved' });
+                res.status(200).send(allPosts);
+            } else {
+                // If searchText is provided, search for posts with titles matching the searchText
+                const posts = await PostScheme.find({ title: { $regex: searchText, $options: 'i' }, status : 'approved' });
+                res.status(200).send(posts);
+            }
+        } catch (error) {
+            res.status(500).send({
+                message: error.message,
+            });
+        }
+    };
+    
+     
 module.exports = {
     savePost,
     getPost,
@@ -274,5 +296,6 @@ module.exports = {
     updatePost,
     rejectPost,
     addComment,
-    getPostbyCat
+    getPostbyCat,
+    searchPost
 }
