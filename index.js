@@ -19,3 +19,9 @@ app.listen (Port, async() => {
     console.log (`listening on ${Port}`)
     await connectDB()
 })
+
+
+app.get ('/', (req, res) => {
+
+    res.send ("welcome!")
+ })
