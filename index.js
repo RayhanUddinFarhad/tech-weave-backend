@@ -11,8 +11,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use ( '/api/users', postRoute)
-app.use( '/api/post', userRoute)
+app.use ( "/", postRoute)
+app.use( "/", userRoute)
 
 
 app.listen (Port, async() => {
