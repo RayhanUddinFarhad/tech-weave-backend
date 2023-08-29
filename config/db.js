@@ -3,6 +3,8 @@ require('dotenv').config()
 
 const connectDB = async () => {
     try {
+      mongoose.set('strictQuery', false);
+
       await mongoose.connect(`mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.9qpxu0o.mongodb.net/techweavecollection?retryWrites=true&w=majority`);
       console.log("database is connected");
     } catch (error) {
