@@ -12,11 +12,7 @@
             "dest": "/",
             "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
         }
-    ],
+    ]
 
-    "functions": {
-        "api/*": {
-            "timeout": 20
-        }
-    }
+   
 }
