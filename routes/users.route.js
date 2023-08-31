@@ -1,5 +1,5 @@
 const express = require('express');
-const { saveUsers, getUsers, getOneUser, changeUserRole } = require('../controller/users.controller');
+const { saveUsers, getUsers, getOneUser, changeUserRole, getAdmin } = require('../controller/users.controller');
 
 const router = express.Router()
 
@@ -7,6 +7,7 @@ router.post ('/users', saveUsers )
 
 router.get('/users', getUsers)
 router.get ('/users/:email', getOneUser )
+router.get ('/admin/:email', getAdmin )
 router.patch('/change-role/:email', changeUserRole)
 
 
