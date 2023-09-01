@@ -64,7 +64,7 @@ const getOneUser = async(req, res) => {
 
 
    try {
-    const userEmail = req.params.email
+    const userEmail = req.params.email; // Convert the provided email to lowercase
     const user = await UserSchema.findOne ({email: userEmail })
 
     res.status(201).send(user)

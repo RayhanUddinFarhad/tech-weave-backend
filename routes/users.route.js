@@ -6,7 +6,7 @@ const router = express.Router()
 router.post ('/users', saveUsers )
 
 router.get('/users', getUsers)
-router.get ('/users/:email', getOneUser )
+router.get ('/user/:email', getOneUser )
 router.get ('/admin/:email', getAdmin )
 router.patch('/change-role/:email', changeUserRole)
 
