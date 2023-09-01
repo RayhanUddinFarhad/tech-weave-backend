@@ -1,5 +1,4 @@
 const PostScheme = require("../models/post.model")
-const UserSchema = require("../models/users.model")
 
 const savePost = async(req, res) => {
 
@@ -37,6 +36,7 @@ const savePost = async(req, res) => {
     }
 
 }
+
 const updatePost = async(req, res) => {
     const id = req.params.id
 
